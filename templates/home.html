@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+
+    <!-- 🔥 Matomo Tracking (Replace URL + ID) -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://your-matomo-url/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+
+</head>
+<body>
+
+<h2>Welcome</h2>
+
+<form method="POST">
+    Enter Comment:
+    <input type="text" name="comment">
+    <button type="submit">Submit</button>
+</form>
+
+<h3>Your Comment:</h3>
+
+<!-- ❌ XSS vulnerability -->
+<div>
+    {{ comment | safe }}
+</div>
+
+</body>
+</html>
