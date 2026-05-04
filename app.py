@@ -3,7 +3,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Create DB
 def init_db():
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
@@ -26,7 +25,7 @@ def do_login():
     conn = sqlite3.connect('test.db')
     c = conn.cursor()
 
-    # ❌ Vulnerable to SQL Injection
+    # ❌ SQL Injection vulnerability
     query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
     result = c.execute(query).fetchone()
 
@@ -39,7 +38,7 @@ def do_login():
 def home():
     comment = ""
     if request.method == 'POST':
-        comment = request.form['comment']  # ❌ Vulnerable to XSS
+        comment = request.form['comment']  # ❌ XSS vulnerability
 
     return render_template('home.html', comment=comment)
 
